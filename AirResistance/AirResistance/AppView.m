@@ -7,10 +7,15 @@
 //
 
 #import "AppView.h"
+#import "AppDelegate.h"
 #import "RectangleShape.h"
 
 @implementation AppView
 @synthesize shapesMut;
+@synthesize slide1;
+@synthesize slide2;
+@synthesize slide3;
+@synthesize slide4;
 
 //moved "shapesMut" to .h file
 double framerate;       // The number of seconds/frame
@@ -41,11 +46,20 @@ int windowHeight;       // Height of main window - not utilized
 // Main drawing functions - calls other drawers
 -(void)drawRect:(NSRect)dirtyRect {
     
-    for (int i=0; i<[shapesMut count]; i++) {
+    [self setDrag];
+    
+    for (int i=0; i<[shapesMut count]; i++) {        
         [[shapesMut objectAtIndex:i] update];
             
         [[shapesMut objectAtIndex:i] draw:[NSColor blueColor]];
     }
+}
+
+-(void) setDrag { 
+    [[shapesMut objectAtIndex:0] setDrag:slide1];
+    [[shapesMut objectAtIndex:1] setDrag:slide2];
+    [[shapesMut objectAtIndex:2] setDrag:slide3];
+    [[shapesMut objectAtIndex:3] setDrag:slide4];
 }
 
 +(int) getWidth { return windowWidth; }

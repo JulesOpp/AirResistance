@@ -10,14 +10,11 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
-	NSSlider *dragxslider;
-	NSSlider *dragyslider;
+	NSSlider *slide1;
+	NSSlider *slide2;
+    NSSlider *slide3;
+    NSSlider *slide4;
 	NSButton *bounceButton;
-    @public
-    
-    @private
-    
-    
 }
 
 @property (assign) IBOutlet NSWindow *window;

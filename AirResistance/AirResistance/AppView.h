@@ -20,6 +20,12 @@
 @property (nonatomic,readwrite) NSMutableArray *shapesMut; // Storate of all the shapes
 - (id)initWithFr:(CGRect)frame:(double)fr;
 
+@property (nonatomic) int slide1;
+@property (nonatomic) int slide2;
+@property (nonatomic) int slide3;
+@property (nonatomic) int slide4;
+
+
 +(int) getWidth;
 +(int) getHeight;
 @end

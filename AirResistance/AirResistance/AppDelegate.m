@@ -34,17 +34,41 @@ bool isBounceable;// whether or not the rectangles can bounce
     
     // Set the timer
     timer = [NSTimer scheduledTimerWithTimeInterval:frameRate target:self selector:@selector(refresh:) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 	
-	dragxslider = [[NSSlider alloc]init];
-	dragxslider.frame = CGRectMake(0, 0, 80, 30);
-	[self.window.contentView addSubview:dragxslider];
+    // SLIDERS
+	slide1 = [[NSSlider alloc] init];
+	slide1.frame = CGRectMake(100, 450, 80, 30);
+    [slide1 setMinValue:0];
+    [slide1 setMaxValue:100];
+    [slide1 setIntValue:0];
+	[self.window.contentView addSubview:slide1];
 	
-	dragyslider = [[NSSlider alloc]init];
-	dragyslider.frame = CGRectMake(180, 0, 80, 30);
-	[self.window.contentView addSubview:dragyslider];
+	slide2 = [[NSSlider alloc] init];
+	slide2.frame = CGRectMake(250, 450, 80, 30);
+    [slide2 setMinValue:0];
+    [slide2 setMaxValue:100];
+    [slide2 setIntValue:33];
+	[self.window.contentView addSubview:slide2];
+    
+    slide3 = [[NSSlider alloc] init];
+    slide3.frame = CGRectMake(400, 450, 80, 30);
+    [slide3 setMinValue:0];
+    [slide3 setMaxValue:100];
+    [slide3 setIntValue:67];
+    [self.window.contentView addSubview:slide3];
+    
+    slide4 = [[NSSlider alloc] init];
+    slide4.frame = CGRectMake(550, 450, 80, 30);
+    [slide4 setMinValue:0];
+    [slide4 setMaxValue:100];
+    [slide4 setIntValue:90];
+    [self.window.contentView addSubview:slide4];
 
+    // BUTT-ONS
 	bounceButton = [[NSButton alloc]initWithFrame:CGRectMake(self.window.frame.size.width-80, self.window.frame.size.height-80, 70, 70)];
 	[bounceButton setAction:@selector(togglebounce:)];
+    [bounceButton setTitle:@"Bounce\nOFF"];
 	[self.window.contentView addSubview:bounceButton];
 }
 
@@ -53,9 +77,11 @@ bool isBounceable;// whether or not the rectangles can bounce
 	if(isBounceable){
 		isBounceable = NO;
 		NSLog(@"no");
+        [bounceButton setTitle:@"Bounce\nOFF"];
 	}else{
 		isBounceable = YES;
 		NSLog(@"yes");
+        [bounceButton setTitle:@"Bounce\nON"];
 	}
 	[self addbouncy];
 }
@@ -74,6 +100,10 @@ bool isBounceable;// whether or not the rectangles can bounce
 #pragma mark Frame methods
 // All the actions when the timer is called
 - (IBAction)refresh:(id)sender {
+    [view setSlide1:[slide1 intValue]];
+    [view setSlide2:[slide2 intValue]];
+    [view setSlide3:[slide3 intValue]];
+    [view setSlide4:[slide4 intValue]];
     [view setNeedsDisplay: true];
 }
 

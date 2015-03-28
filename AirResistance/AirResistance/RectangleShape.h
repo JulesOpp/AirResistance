@@ -40,4 +40,7 @@
 -(double) getWidth;
 -(double) getHeight;
 -(NSColor*) getColor;
+
+-(void) setDrag: (int) d;
+
 @end

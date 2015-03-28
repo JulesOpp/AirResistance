@@ -72,7 +72,7 @@
         velX *= -1;
     
     // Keep at bottom
-	if (bouncez == YES) {
+	if (bouncez == NO) {
 		if (posY <= 0) {
 			posY = 0;
 			velY = 0;
@@ -83,5 +83,6 @@
 -(double) getWidth { return width; }
 -(double) getHeight { return height; }
 -(NSColor*) getColor { return col; }
+-(void) setDrag:(int)d { dragX = d/100.0; dragY = d/100.0; }
 
 @end
