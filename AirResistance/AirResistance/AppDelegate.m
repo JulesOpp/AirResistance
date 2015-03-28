@@ -16,6 +16,7 @@
 NSTimer *timer; // Timer running telling the engine to update
 AppView *view; // Reference to the AppView
 double frameRate; // The frameRate is what the timer is based upon
+bool isBounceable;// whether or not the rectangles can bounce
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -36,12 +37,28 @@ double frameRate; // The frameRate is what the timer is based upon
 	[self.window.contentView addSubview:dragxslider];
 	
 	dragyslider = [[NSSlider alloc]init];
-	dragyslider.frame = CGRectMake(0, 0, 80, 30);
+	dragyslider.frame = CGRectMake(0, 0, 180, 30);
 	[self.window.contentView addSubview:dragyslider];
 
+	bounceButton = [[NSButton alloc]initWithFrame:CGRectMake(self.window.frame.size.width-80, self.window.frame.size.height-80, 70, 70)];
+	[bounceButton setAction:@selector(addbouncy)];
+	[self.window.contentView addSubview:bounceButton];
 }
 
+#pragma mark bounce methods
+-(IBAction)togglebounce:(id)sender{
+	if(isBounceable){
+		
+	}else{
+		
+	}
+}
+//Allows the rectangle objects to bounce
+-(void)addbouncy{
+	
+}
 
+#pragma mark Frame methods
 // All the actions when the timer is called
 - (IBAction)refresh:(id)sender {
     [view setNeedsDisplay: true];

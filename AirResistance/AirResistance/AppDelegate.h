@@ -12,6 +12,7 @@
 {
 	NSSlider *dragxslider;
 	NSSlider *dragyslider;
+	NSButton *bounceButton;
     @public
     
     @private
@@ -25,4 +26,6 @@
 
 +(double)getFrameRate;
 
+-(IBAction)togglebounce:(id)sender;
+-(void)addbouncy;
 @end
