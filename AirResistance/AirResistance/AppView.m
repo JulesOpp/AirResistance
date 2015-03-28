@@ -22,12 +22,16 @@ double framerate;       // The number of seconds/frame
 int windowWidth;        // Width of main window - not utilized
 int windowHeight;       // Height of main window - not utilized
 
+BOOL layoutSwitch;
+
 // Initiate all parameters
 - (id)initWithFr:(CGRect)frame:(double)fr {
     self = [super initWithFrame:frame];
     if (self) {
         framerate = fr;
         numberShapes = 4;
+        
+        layoutSwitch = true;
         
         //-(id) init: (double) xx: (double) xy: (double) vx: (double) vy: (double) ax: (double) ay: (double) dx: (double) dy: (BOOL) m: (double) w: (double) h {
         shapesMut = [NSMutableArray array];
@@ -66,12 +70,35 @@ int windowHeight;       // Height of main window - not utilized
 -(void)reset{
 	[shapesMut removeAllObjects];
 	
-	[shapesMut addObject:[[RectangleShape alloc] init:100:400:10:0:0:0:0.1:0.1:1:15:20:[NSColor blueColor]]];
-	[shapesMut addObject:[[RectangleShape alloc] init:250:400:10:0:0:0:0.2:0.2:1:15:20:[NSColor greenColor]]];
-	[shapesMut addObject:[[RectangleShape alloc] init:400:400:10:0:0:0:0.3:0.3:1:15:20:[NSColor orangeColor]]];
-	[shapesMut addObject:[[RectangleShape alloc] init:550:400:10:0:0:0:0.4:0.4:1:15:20:[NSColor redColor]]];
-	
+    if (layoutSwitch == true)
+        [self setSpread];
+    else
+        [self setOverlap];
+}
 
+-(void) changeLayout {
+    [shapesMut removeAllObjects];
+	
+    if (layoutSwitch == true)
+        [self setOverlap];
+    else
+        [self setSpread];
+    
+    layoutSwitch ^= 1;
+}
+
+-(void) setSpread {
+    [shapesMut addObject:[[RectangleShape alloc] init:100:400:20:0:0:0:0.1:0.1:1:15:20:[NSColor blueColor]]];
+    [shapesMut addObject:[[RectangleShape alloc] init:250:400:20:0:0:0:0.2:0.2:1:15:20:[NSColor greenColor]]];
+    [shapesMut addObject:[[RectangleShape alloc] init:400:400:20:0:0:0:0.3:0.3:1:15:20:[NSColor orangeColor]]];
+    [shapesMut addObject:[[RectangleShape alloc] init:550:400:20:0:0:0:0.4:0.4:1:15:20:[NSColor redColor]]];
+}
+
+-(void) setOverlap {
+    [shapesMut addObject:[[RectangleShape alloc] init:100:400:20:0:0:0:0.1:0.1:1:15:20:[NSColor blueColor]]];
+    [shapesMut addObject:[[RectangleShape alloc] init:100:400:20:0:0:0:0.2:0.2:1:15:20:[NSColor greenColor]]];
+    [shapesMut addObject:[[RectangleShape alloc] init:100:400:20:0:0:0:0.3:0.3:1:15:20:[NSColor orangeColor]]];
+    [shapesMut addObject:[[RectangleShape alloc] init:100:400:20:0:0:0:0.4:0.4:1:15:20:[NSColor redColor]]];
 }
 
 @end

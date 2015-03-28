@@ -76,7 +76,20 @@ bool isBounceable;// whether or not the rectangles can bounce
 	[reset setAction:@selector(reset)];
 	[reset setTitle:@"Reset"];
 	[self.window.contentView addSubview:reset];
+    
+    layout = [[NSButton alloc] initWithFrame:CGRectMake(20, self.window.frame.size.height-150, 70, 70)];
+    [layout setAction:@selector(changeLayout:)];
+    [layout setTitle:@"Change\nLayout"];
+    [self.window.contentView addSubview:layout];
 
+}
+
+-(IBAction)changeLayout:(id)sender {
+    [slide1 setIntValue:0];
+    [slide2 setIntValue:33];
+    [slide3 setIntValue:67];
+    [slide4 setIntValue:90];
+    [view changeLayout];
 }
 
 -(void)pause{//Shift + Apple + "P"
@@ -85,10 +98,18 @@ bool isBounceable;// whether or not the rectangles can bounce
 
 -(IBAction)resetterer:(id)sender{
 	[self reset];
+    [slide1 setIntValue:0];
+    [slide2 setIntValue:33];
+    [slide3 setIntValue:67];
+    [slide4 setIntValue:90];
 }
 
 -(void)reset{//Apple + "R"
-	[view reset];
+    [slide1 setIntValue:0];
+    [slide2 setIntValue:33];
+    [slide3 setIntValue:67];
+    [slide4 setIntValue:90];
+    [view reset];
 }
 
 #pragma mark bounce methods

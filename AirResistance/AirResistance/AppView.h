@@ -29,4 +29,5 @@
 +(int) getWidth;
 +(int) getHeight;
 -(void)reset;
+-(void) changeLayout;
 @end
