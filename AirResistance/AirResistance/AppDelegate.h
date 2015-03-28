@@ -10,6 +10,8 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
+	NSSlider *dragxslider;
+	NSSlider *dragyslider;
     @public
     
     @private

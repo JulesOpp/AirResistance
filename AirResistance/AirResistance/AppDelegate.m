@@ -30,6 +30,15 @@ double frameRate; // The frameRate is what the timer is based upon
     
     // Set the timer
     timer = [NSTimer scheduledTimerWithTimeInterval:frameRate target:self selector:@selector(refresh:) userInfo:nil repeats:YES];
+	
+	dragxslider = [[NSSlider alloc]init];
+	dragxslider.frame = CGRectMake(0, 0, 80, 30);
+	[self.window.contentView addSubview:dragxslider];
+	
+	dragyslider = [[NSSlider alloc]init];
+	dragyslider.frame = CGRectMake(0, 0, 80, 30);
+	[self.window.contentView addSubview:dragyslider];
+
 }
 
 

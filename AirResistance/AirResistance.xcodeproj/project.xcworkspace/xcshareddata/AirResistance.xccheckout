@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2A123F66-9804-47B4-887B-0DFE91AB8756</string>
+	<key>IDESourceControlProjectName</key>
+	<string>AirResistance</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6D02A0F47CFD3E1E550B975E34D5D4578D790387</key>
+		<string>https://github.com/JulesOpp/AirResistance.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>AirResistance/AirResistance.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6D02A0F47CFD3E1E550B975E34D5D4578D790387</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/JulesOpp/AirResistance.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6D02A0F47CFD3E1E550B975E34D5D4578D790387</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6D02A0F47CFD3E1E550B975E34D5D4578D790387</string>
+			<key>IDESourceControlWCCName</key>
+			<string>AirResistance</string>
+		</dict>
+	</array>
+</dict>
+</plist>
