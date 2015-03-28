@@ -21,7 +21,9 @@ bool isBounceable;// whether or not the rectangles can bounce
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     frameRate = 0.01;
-    
+	
+	isBounceable = NO;
+	
     // Create the main window
     [self.window setFrame:CGRectMake(300, 200, 750, 500) display:YES];
     [self.window setStyleMask:[self.window styleMask] & ~NSResizableWindowMask];
@@ -37,20 +39,20 @@ bool isBounceable;// whether or not the rectangles can bounce
 	[self.window.contentView addSubview:dragxslider];
 	
 	dragyslider = [[NSSlider alloc]init];
-	dragyslider.frame = CGRectMake(0, 0, 180, 30);
+	dragyslider.frame = CGRectMake(180, 0, 80, 30);
 	[self.window.contentView addSubview:dragyslider];
 
 	bounceButton = [[NSButton alloc]initWithFrame:CGRectMake(self.window.frame.size.width-80, self.window.frame.size.height-80, 70, 70)];
-	[bounceButton setAction:@selector(addbouncy)];
+	[bounceButton setAction:@selector(togglebounce:)];
 	[self.window.contentView addSubview:bounceButton];
 }
 
 #pragma mark bounce methods
 -(IBAction)togglebounce:(id)sender{
 	if(isBounceable){
-		
+		isBounceable = NO;
 	}else{
-		
+		isBounceable = YES;
 	}
 }
 //Allows the rectangle objects to bounce
