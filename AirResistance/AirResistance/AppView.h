@@ -12,15 +12,11 @@
 {
 @public
     int numberShapes;
-    BOOL pausePlay;
     
 @private
-    NSColor *drawColor;
 }
 
 - (id)initWithFr:(CGRect)frame:(double)fr;
-
--(void) setColor: (NSColor*)c;
 
 +(int) getWidth;
 +(int) getHeight;

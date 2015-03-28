@@ -16,12 +16,10 @@
 NSTimer *timer; // Timer running telling the engine to update
 AppView *view; // Reference to the AppView
 double frameRate; // The frameRate is what the timer is based upon
-BOOL pausePlay; // Boolean determining whether paused or not
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     frameRate = 0.01;
-    pausePlay = false;
     
     // Create the main window
     [self.window setFrame:CGRectMake(300, 200, 750, 500) display:YES];
@@ -32,25 +30,16 @@ BOOL pausePlay; // Boolean determining whether paused or not
     
     // Set the timer
     timer = [NSTimer scheduledTimerWithTimeInterval:frameRate target:self selector:@selector(refresh:) userInfo:nil repeats:YES];
-    
 }
+
 
 // All the actions when the timer is called
 - (IBAction)refresh:(id)sender {
-    // Call drawRect in the view
     [view setNeedsDisplay: true];
 }
 
 
-// Method controlling the pause button
--(IBAction)pause:(id)sender {
-    // There is a pausePlay for the AppDelegate and the AppView, maybe redundant w/e
-    pausePlay ^= 1; 
-    view->pausePlay ^= 1; 
-}
-
-
-
+// Return the frame rate
 +(double)getFrameRate {
     return frameRate;
 }

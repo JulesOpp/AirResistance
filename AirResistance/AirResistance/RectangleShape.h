@@ -25,13 +25,16 @@
     double dragY;
     
     double mass;
+    
+    NSColor* col;
 }
 
--(id) init: (double) xx: (double) xy: (double) vx: (double) vy: (double) ax: (double) ay: (double) dx: (double) dy: (BOOL) m: (double) w: (double) h;
+-(id) init: (double) xx: (double) xy: (double) vx: (double) vy: (double) ax: (double) ay: (double) dx: (double) dy: (BOOL) m: (double) w: (double) h: (NSColor*) c;
 -(void) draw:(NSColor*)c;
 -(void) update;
 
 
 -(double) getWidth;
 -(double) getHeight;
+-(NSColor*) getColor;
 @end

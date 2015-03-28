@@ -15,9 +15,8 @@
 // The posX and posY define the bottom left corner of the rectangle
 // All else needed is the width and height
 
--(id) init: (double) xx: (double) xy: (double) vx: (double) vy: (double) ax: (double) ay: (double) dx: (double) dy: (BOOL) m: (double) w: (double) h {
+-(id) init: (double) xx: (double) xy: (double) vx: (double) vy: (double) ax: (double) ay: (double) dx: (double) dy: (BOOL) m: (double) w: (double) h: (NSColor*) c {
     self = [super init];
-	//self = [super initWithpositionX:xx positionY:xy velocityX:vx velocityY:vy accelerationX:ax accelerationY:ay dragValueX:dx dragValueY:dy elasticity:e mass:n canMove:m rotation:r rotAccel:ra];
     if (self) {
         width = w;
         height = h;
@@ -30,11 +29,13 @@
         dragX = dx;
         dragY = dy;
         mass = m;
+        col = c;
     }
     return self;
 }
 
--(void) draw:(NSColor*)c {    
+-(void) draw:(NSColor*)c {  
+    [col setFill];
     NSRectFill(CGRectMake(posX, posY, width, height));
 }
 
@@ -43,14 +44,10 @@
 // Vf = Vo + A
 // A = F/m    assuming m=1    Ay = g - dv  and   Ax = -dv
 
-// THE INPUTTED ACCELERATION DOESNT DO ANYTHING RIGHT NOW
-
 -(void) update {
     double fr = [AppDelegate getFrameRate]; 
     
-    double gravity = -2;
-    //[super setAccX:([super getAccX]-[super getDragX]*[super getVelX])];
-    //[super setAccY:([super getAccY]+gravity-[super getDragY]*[super getVelY])];
+    double gravity = -4;
     
     // Ax = (ma - dv)/m      Ay = (ma - mg - dv)/m
     double currentAccX = (mass*accX-dragX*velX)/mass;
@@ -63,15 +60,14 @@
     posY += velY*fr*10;
     
     // Bounce
-    /*if ([super getPosY] < 0 && [super getVelY] < 0)
-        [super setVelY:-1*[super getVelY]];
-    if ([super getPosX] < 0 && [super getVelX] < 0)
-        [super setVelX:-1*[super getVelX]];
-    if ([super getPosY] > [AppView getHeight] && [super getVelY] > 0)
-        [super setVelY:-1*[super getVelY]];
-    if ([super getPosX] > [AppView getWidth] && [super getVelX] > 0)
-        [super setVelX:-1*[super getVelX]];
-     */
+    if (posY < 0 && velY < 0)
+        velY *= -1;
+    if (posX < 0 && velX < 0)
+        velX *= -1;
+    if (posY > [AppView getHeight] && velY > 0)
+        velY *= -1;
+    if (posX > [AppView getWidth] && velX > 0)
+        velX *= -1;
     
     // Keep at bottom
     if (posY <= 0) {
@@ -82,5 +78,6 @@
 
 -(double) getWidth { return width; }
 -(double) getHeight { return height; }
+-(NSColor*) getColor { return col; }
 
 @end

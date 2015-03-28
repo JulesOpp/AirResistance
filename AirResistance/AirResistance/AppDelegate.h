@@ -14,14 +14,12 @@
     
     @private
     
-    BOOL pauseplay;
     
 }
 
 @property (assign) IBOutlet NSWindow *window;
 
 - (IBAction)refresh:(id)sender;
--(IBAction)pause:(id)sender;
 
 +(double)getFrameRate;
 
