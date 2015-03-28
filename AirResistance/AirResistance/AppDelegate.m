@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "AppView.h"
 
+#import "RectangleShape.h"
 @implementation AppDelegate
 
 @synthesize window = _window; // The main window
@@ -51,13 +52,23 @@ bool isBounceable;// whether or not the rectangles can bounce
 -(IBAction)togglebounce:(id)sender{
 	if(isBounceable){
 		isBounceable = NO;
+		NSLog(@"no");
 	}else{
 		isBounceable = YES;
+		NSLog(@"yes");
 	}
+	[self addbouncy];
 }
 //Allows the rectangle objects to bounce
 -(void)addbouncy{
-	
+	for (int n = 0; n<[[view shapesMut] count]; n++) {
+		if ([[[view shapesMut]objectAtIndex:n] isKindOfClass:[RectangleShape class]]) {
+			[[[view shapesMut]objectAtIndex:n] setBouncez: isBounceable];
+			 
+		}else{
+			NSLog(@"We have a problem");
+		}
+	}
 }
 
 #pragma mark Frame methods

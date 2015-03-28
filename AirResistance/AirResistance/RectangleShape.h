@@ -30,7 +30,7 @@
 	
 }
 
-@property (nonatomic) BOOL bounce;//allows "setBounce" method
+@property (nonatomic) BOOL bouncez;//allows "setBounce" method
 
 -(id) init: (double) xx: (double) xy: (double) vx: (double) vy: (double) ax: (double) ay: (double) dx: (double) dy: (BOOL) m: (double) w: (double) h: (NSColor*) c;
 -(void) draw:(NSColor*)c;

@@ -10,8 +10,9 @@
 #import "RectangleShape.h"
 
 @implementation AppView
+@synthesize shapesMut;
 
-NSMutableArray *shapesMut; // Storate of all the shapes
+//moved "shapesMut" to .h file
 double framerate;       // The number of seconds/frame
 int windowWidth;        // Width of main window - not utilized
 int windowHeight;       // Height of main window - not utilized

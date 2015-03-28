@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 
 @implementation RectangleShape
-@synthesize bounce;
+@synthesize bouncez;
 
 // The posX and posY define the bottom left corner of the rectangle
 // All else needed is the width and height
@@ -60,9 +60,7 @@
     posX += velX*fr*10;
     posY += velY*fr*10;
 	
-	if (bounce) {
-		
-	}
+
     // Bounce
     if (posY < 0 && velY < 0)
         velY *= -1;
@@ -74,10 +72,12 @@
         velX *= -1;
     
     // Keep at bottom
-    if (posY <= 0) {
-        posY = 0;
-        velY = 0;
-    }
+	if (bouncez == YES) {
+		if (posY <= 0) {
+			posY = 0;
+			velY = 0;
+		}
+	}
 }
 
 -(double) getWidth { return width; }

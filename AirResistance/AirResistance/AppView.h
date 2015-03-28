@@ -12,10 +12,12 @@
 {
 @public
     int numberShapes;
+	
     
 @private
 }
 
+@property (nonatomic,readwrite) NSMutableArray *shapesMut; // Storate of all the shapes
 - (id)initWithFr:(CGRect)frame:(double)fr;
 
 +(int) getWidth;
