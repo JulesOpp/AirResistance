@@ -28,4 +28,5 @@
 
 +(int) getWidth;
 +(int) getHeight;
+-(void)reset;
 @end

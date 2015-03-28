@@ -31,13 +31,11 @@ int windowHeight;       // Height of main window - not utilized
         
         //-(id) init: (double) xx: (double) xy: (double) vx: (double) vy: (double) ax: (double) ay: (double) dx: (double) dy: (BOOL) m: (double) w: (double) h {
         shapesMut = [NSMutableArray array];
-        [shapesMut addObject:[[RectangleShape alloc] init:100:400:10:0:0:0:0.1:0.1:1:15:20:[NSColor blueColor]]];
-        [shapesMut addObject:[[RectangleShape alloc] init:250:400:10:0:0:0:0.2:0.2:1:15:20:[NSColor greenColor]]];
-        [shapesMut addObject:[[RectangleShape alloc] init:400:400:10:0:0:0:0.3:0.3:1:15:20:[NSColor orangeColor]]];
-        [shapesMut addObject:[[RectangleShape alloc] init:550:400:10:0:0:0:0.4:0.4:1:15:20:[NSColor redColor]]];
+		
+		[self reset];
+		windowWidth = frame.size.width;
+		windowHeight = frame.size.height;
 
-        windowWidth = frame.size.width;
-        windowHeight = frame.size.height;
     }
     return self;
 }
@@ -65,6 +63,15 @@ int windowHeight;       // Height of main window - not utilized
 +(int) getWidth { return windowWidth; }
 +(int) getHeight { return windowHeight; }
 
+-(void)reset{
+	[shapesMut removeAllObjects];
+	
+	[shapesMut addObject:[[RectangleShape alloc] init:100:400:10:0:0:0:0.1:0.1:1:15:20:[NSColor blueColor]]];
+	[shapesMut addObject:[[RectangleShape alloc] init:250:400:10:0:0:0:0.2:0.2:1:15:20:[NSColor greenColor]]];
+	[shapesMut addObject:[[RectangleShape alloc] init:400:400:10:0:0:0:0.3:0.3:1:15:20:[NSColor orangeColor]]];
+	[shapesMut addObject:[[RectangleShape alloc] init:550:400:10:0:0:0:0.4:0.4:1:15:20:[NSColor redColor]]];
+	
 
+}
 
 @end

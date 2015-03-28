@@ -70,10 +70,29 @@ bool isBounceable;// whether or not the rectangles can bounce
 	[bounceButton setAction:@selector(togglebounce:)];
     [bounceButton setTitle:@"Bounce\nOFF"];
 	[self.window.contentView addSubview:bounceButton];
+
+
+	reset = [[NSButton alloc]initWithFrame:CGRectMake(20, self.window.frame.size.height-80, 70, 70)];
+	[reset setAction:@selector(reset)];
+	[reset setTitle:@"Reset"];
+	[self.window.contentView addSubview:reset];
+
+}
+
+-(void)pause{//Shift + Apple + "P"
+	
+}
+
+-(IBAction)resetterer:(id)sender{
+	[self reset];
+}
+
+-(void)reset{//Apple + "R"
+	[view reset];
 }
 
 #pragma mark bounce methods
--(IBAction)togglebounce:(id)sender{
+-(IBAction)togglebounce:(id)sender{//Apple + T
 	if(isBounceable){
 		isBounceable = NO;
 		NSLog(@"no");

@@ -15,6 +15,7 @@
     NSSlider *slide3;
     NSSlider *slide4;
 	NSButton *bounceButton;
+	NSButton *reset;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -25,4 +26,5 @@
 
 -(IBAction)togglebounce:(id)sender;
 -(void)addbouncy;
+-(IBAction)resetterer:(id)sender;
 @end
