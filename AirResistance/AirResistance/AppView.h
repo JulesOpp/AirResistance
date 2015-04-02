@@ -26,6 +26,8 @@
 @property (nonatomic) int slide4;
 
 
+-(void) drawRect2: (NSRect)dirtyRect;
+
 +(int) getWidth;
 +(int) getHeight;
 -(void)reset;

@@ -24,6 +24,7 @@ int windowHeight;       // Height of main window - not utilized
 
 BOOL layoutSwitch;
 
+
 // Initiate all parameters
 - (id)initWithFr:(CGRect)frame:(double)fr {
     self = [super initWithFrame:frame];
@@ -38,23 +39,39 @@ BOOL layoutSwitch;
 		
 		[self reset];
 		windowWidth = frame.size.width;
-		windowHeight = frame.size.height;
-
+		windowHeight = frame.size.height;   
+        
     }
     return self;
 }
 
 
 // Main drawing functions - calls other drawers
--(void)drawRect:(NSRect)dirtyRect {
-    
+-(void)drawRect:(NSRect)dirtyRect {    
     [self setDrag];
     
     for (int i=0; i<[shapesMut count]; i++) {        
         [[shapesMut objectAtIndex:i] update];
             
         [[shapesMut objectAtIndex:i] draw:[NSColor blueColor]];
+        
+        //[self setNeedsDisplayInRect:CGRectMake([[shapesMut objectAtIndex:i] getX], [[shapesMut objectAtIndex:i] getY], [[shapesMut objectAtIndex:i] getX]+[[shapesMut objectAtIndex:i] getWidth], [[shapesMut objectAtIndex:i] getY]+[[shapesMut objectAtIndex:i] getHeight])];
+
     }
+}
+
+-(void) drawRect2: (NSRect)dirtyRect {    
+    NSLog(@"Draw");
+    
+    [self setDrag];
+    
+    for (int i=0; i<[shapesMut count]; i++) {
+        [[shapesMut objectAtIndex:i] update];
+        
+        [[shapesMut objectAtIndex:i] draw:[NSColor blueColor]];
+    }
+    
+    
 }
 
 -(void) setDrag { 

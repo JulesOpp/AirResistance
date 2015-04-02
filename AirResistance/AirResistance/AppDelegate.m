@@ -18,12 +18,14 @@ NSTimer *timer; // Timer running telling the engine to update
 AppView *view; // Reference to the AppView
 double frameRate; // The frameRate is what the timer is based upon
 bool isBounceable;// whether or not the rectangles can bounce
+bool isLayer;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     frameRate = 0.01;
 	
 	isBounceable = NO;
+    isLayer = NO;
 	
     // Create the main window
     [self.window setFrame:CGRectMake(300, 200, 750, 500) display:YES];
@@ -48,21 +50,21 @@ bool isBounceable;// whether or not the rectangles can bounce
 	slide2.frame = CGRectMake(250, 450, 80, 30);
     [slide2 setMinValue:0];
     [slide2 setMaxValue:100];
-    [slide2 setIntValue:33];
+    [slide2 setIntValue:20];
 	[self.window.contentView addSubview:slide2];
     
     slide3 = [[NSSlider alloc] init];
     slide3.frame = CGRectMake(400, 450, 80, 30);
     [slide3 setMinValue:0];
     [slide3 setMaxValue:100];
-    [slide3 setIntValue:67];
+    [slide3 setIntValue:40];
     [self.window.contentView addSubview:slide3];
     
     slide4 = [[NSSlider alloc] init];
     slide4.frame = CGRectMake(550, 450, 80, 30);
     [slide4 setMinValue:0];
     [slide4 setMaxValue:100];
-    [slide4 setIntValue:90];
+    [slide4 setIntValue:60];
     [self.window.contentView addSubview:slide4];
 
     // BUTT-ONS
@@ -81,14 +83,44 @@ bool isBounceable;// whether or not the rectangles can bounce
     [layout setAction:@selector(changeLayout:)];
     [layout setTitle:@"Change\nLayout"];
     [self.window.contentView addSubview:layout];
+    
+    layer = [[NSButton alloc] initWithFrame:CGRectMake(20, self.window.frame.size.height-220, 70, 70)];
+    [layer setAction:@selector(layer:)];
+    [layer setTitle:@"Layer"];
+    [self.window.contentView addSubview:layer];
 
+}
+
+-(IBAction)layer:(id)sender {
+    if (isLayer == NO) {
+        [timer invalidate];
+        timer = nil;
+        timer = [NSTimer scheduledTimerWithTimeInterval:frameRate target:self selector:@selector(layer2) userInfo:nil repeats:YES];
+    }
+    else {
+        [timer invalidate];
+        timer = nil;
+        timer = [NSTimer scheduledTimerWithTimeInterval:frameRate target:self selector:@selector(refresh:) userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    }
+    isLayer ^= 1;
+}
+
+-(void) layer2 {
+    [view setSlide1:[slide1 intValue]];
+    [view setSlide2:[slide2 intValue]];
+    [view setSlide3:[slide3 intValue]];
+    [view setSlide4:[slide4 intValue]];
+    [view drawRect2:_window.frame];
+    
+    [view setNeedsDisplayInRect:CGRectMake(0, 0, 1, 1)];
 }
 
 -(IBAction)changeLayout:(id)sender {
     [slide1 setIntValue:0];
-    [slide2 setIntValue:33];
-    [slide3 setIntValue:67];
-    [slide4 setIntValue:90];
+    [slide2 setIntValue:20];
+    [slide3 setIntValue:40];
+    [slide4 setIntValue:60];
     [view changeLayout];
 }
 
@@ -98,17 +130,20 @@ bool isBounceable;// whether or not the rectangles can bounce
 
 -(IBAction)resetterer:(id)sender{
 	[self reset];
-    [slide1 setIntValue:0];
-    [slide2 setIntValue:33];
-    [slide3 setIntValue:67];
-    [slide4 setIntValue:90];
+    //[slide1 setIntValue:0];
+    //[slide2 setIntValue:20];
+    //[slide3 setIntValue:40];
+    //[slide4 setIntValue:60];
 }
 
 -(void)reset{//Apple + "R"
-    [slide1 setIntValue:0];
-    [slide2 setIntValue:33];
-    [slide3 setIntValue:67];
-    [slide4 setIntValue:90];
+    //[slide1 setIntValue:0];
+    //[slide2 setIntValue:20];
+    //[slide3 setIntValue:40];
+    //[slide4 setIntValue:60];
+    [view setNeedsDisplay: true];
+
+    
     [view reset];
 }
 
@@ -125,15 +160,14 @@ bool isBounceable;// whether or not the rectangles can bounce
 	}
 	[self addbouncy];
 }
+
 //Allows the rectangle objects to bounce
 -(void)addbouncy{
 	for (int n = 0; n<[[view shapesMut] count]; n++) {
-		if ([[[view shapesMut]objectAtIndex:n] isKindOfClass:[RectangleShape class]]) {
+		if ([[[view shapesMut]objectAtIndex:n] isKindOfClass:[RectangleShape class]])
 			[[[view shapesMut]objectAtIndex:n] setBouncez: isBounceable];
-			 
-		}else{
+		else
 			NSLog(@"We have a problem");
-		}
 	}
 }
 

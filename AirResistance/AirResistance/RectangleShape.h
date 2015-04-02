@@ -37,6 +37,8 @@
 -(void) update;
 
 
+-(double) getX;
+-(double) getY;
 -(double) getWidth;
 -(double) getHeight;
 -(NSColor*) getColor;

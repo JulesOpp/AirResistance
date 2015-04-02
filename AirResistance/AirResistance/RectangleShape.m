@@ -80,6 +80,8 @@
 	}
 }
 
+-(double) getX { return posX; }
+-(double) getY { return posY; }
 -(double) getWidth { return width; }
 -(double) getHeight { return height; }
 -(NSColor*) getColor { return col; }

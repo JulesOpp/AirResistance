@@ -17,6 +17,7 @@
 	NSButton *bounceButton;
 	NSButton *reset;
     NSButton *layout;
+    NSButton *layer;
 }
 
 @property (assign) IBOutlet NSWindow *window;
