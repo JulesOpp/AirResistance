@@ -13,6 +13,10 @@
 @implementation AppDelegate
 
 @synthesize window = _window; // The main window
+@synthesize box1;
+@synthesize box2;
+@synthesize box3;
+@synthesize box4;
 
 NSTimer *timer; // Timer running telling the engine to update
 AppView *view; // Reference to the AppView
@@ -89,6 +93,46 @@ bool isLayer;
     [layer setTitle:@"Layer"];
     [self.window.contentView addSubview:layer];
 
+    // TEXT BOXES
+    box1 = [[NSTextField alloc] initWithFrame:CGRectMake(200, 440, 30, 30)];
+    box2 = [[NSTextField alloc] initWithFrame:CGRectMake(350, 440, 30, 30)];
+    box3 = [[NSTextField alloc] initWithFrame:CGRectMake(500, 440, 30, 30)];
+    box4 = [[NSTextField alloc] initWithFrame:CGRectMake(650, 440, 30, 30)];
+
+    [box1 setStringValue:[NSString stringWithFormat:@"%d", [slide1 intValue]]];
+    [box2 setStringValue:[NSString stringWithFormat:@"%d", [slide2 intValue]]];
+    [box3 setStringValue:[NSString stringWithFormat:@"%d", [slide3 intValue]]];
+    [box4 setStringValue:[NSString stringWithFormat:@"%d", [slide4 intValue]]];
+    
+    [box1 setEditable:false];
+    [box2 setEditable:false];
+    [box3 setEditable:false];
+    [box4 setEditable:false];
+    
+    [box1 setBezeled:false];
+    [box2 setBezeled:false];
+    [box3 setBezeled:false];
+    [box4 setBezeled:false];
+    
+    [box1 setDrawsBackground:false];
+    [box2 setDrawsBackground:false];
+    [box3 setDrawsBackground:false];
+    [box4 setDrawsBackground:false];
+    
+    [self.window.contentView addSubview:box1];    
+    [self.window.contentView addSubview:box2];
+    [self.window.contentView addSubview:box3];
+    [self.window.contentView addSubview:box4];
+    
+    [slide1 setTarget:self];
+    [slide1 setAction:@selector(slide1Change:)];
+    [slide2 setTarget:self];
+    [slide2 setAction:@selector(slide2Change:)];
+    [slide3 setTarget:self];
+    [slide3 setAction:@selector(slide3Change:)];
+    [slide4 setTarget:self];
+    [slide4 setAction:@selector(slide4Change:)];
+
 }
 
 -(IBAction)layer:(id)sender {
@@ -124,6 +168,24 @@ bool isLayer;
     [view changeLayout];
 }
 
+-(void) slide1Change:(NSNotification *) notification {
+    [box1 setStringValue:[NSString stringWithFormat:@"%d",[slide1 intValue]]];
+    NSLog(@"ELIGHSIGUHRIU");
+}
+
+-(void) slide2Change:(NSNotification *) notification {
+    [box2 setStringValue:[NSString stringWithFormat:@"%d",[slide2 intValue]]];
+}
+
+-(void) slide3Change:(NSNotification *) notification {
+    [box3 setStringValue:[NSString stringWithFormat:@"%d",[slide3 intValue]]];
+}
+
+-(void) slide4Change:(NSNotification *) notification {
+    [box4 setStringValue:[NSString stringWithFormat:@"%d",[slide4 intValue]]];
+}
+
+
 -(void)pause{//Shift + Apple + "P"
 	
 }
@@ -145,6 +207,8 @@ bool isLayer;
 
     
     [view reset];
+    
+    [self addbouncy];
 }
 
 #pragma mark bounce methods

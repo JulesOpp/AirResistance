@@ -22,6 +22,12 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
+@property (nonatomic, retain) IBOutlet NSTextField *box1;
+@property (nonatomic, retain) IBOutlet NSTextField *box2;
+@property (nonatomic, retain) IBOutlet NSTextField *box3;
+@property (nonatomic, retain) IBOutlet NSTextField *box4;
+
+
 - (IBAction)refresh:(id)sender;
 
 +(double)getFrameRate;

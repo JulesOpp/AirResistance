@@ -54,9 +54,6 @@ BOOL layoutSwitch;
         [[shapesMut objectAtIndex:i] update];
             
         [[shapesMut objectAtIndex:i] draw:[NSColor blueColor]];
-        
-        //[self setNeedsDisplayInRect:CGRectMake([[shapesMut objectAtIndex:i] getX], [[shapesMut objectAtIndex:i] getY], [[shapesMut objectAtIndex:i] getX]+[[shapesMut objectAtIndex:i] getWidth], [[shapesMut objectAtIndex:i] getY]+[[shapesMut objectAtIndex:i] getHeight])];
-
     }
 }
 
@@ -102,6 +99,8 @@ BOOL layoutSwitch;
         [self setSpread];
     
     layoutSwitch ^= 1;
+    
+    [self setNeedsDisplay:true];
 }
 
 -(void) setSpread {
